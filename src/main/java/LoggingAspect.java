@@ -1,0 +1,54 @@
+package poc;
+
+import java.util.Arrays;
+
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+
+@Aspect
+public class LoggingAspect {
+	
+	@Before("execution (* poc.RandomNumberGenerator.roll(..))")
+	public void logBefore(JoinPoint joinPoint) {
+		System.out.println("logBefore() is running!");
+		System.out.println("about to run : " + joinPoint.getSignature().getName());
+		System.out.println("hijacked arguments : " + Arrays.toString(joinPoint.getArgs()));
+		System.out.println("******");
+	}
+	/*
+	@After("execution (* poc.RandomNumberGenerator.roll(..))")
+	public void logAfter(JoinPoint joinPoint) {
+		System.out.println("logAfter() is running!");
+		System.out.println("just run : " + joinPoint.getSignature().getName());
+		System.out.println("******");
+	}
+	*/
+	@AfterReturning(
+		pointcut = "execution (* poc.RandomNumberGenerator.roll(..))",
+		returning= "result"
+			)
+	public void logAfterReturning(JoinPoint joinPoint, Object result) {
+		System.out.println("logAfterReturning() is running!");
+		System.out.println("completed running : " + joinPoint.getSignature().getName());
+		System.out.println("Method returned value is : " + result);
+		System.out.println("******");
+	}
+	
+	/*
+	@Around("execution (* poc.RandomNumberGenerator.roll(..))")
+	public void logAround(ProceedingJoinPoint joinPoint) throws Throwable {
+		System.out.println("logAround() is running!");
+		System.out.println("hijacked method : " + joinPoint.getSignature().getName());
+		System.out.println("hijacked arguments : " + Arrays.toString(joinPoint.getArgs()));
+		System.out.println("Around before is running!");
+		joinPoint.proceed(); // continue on the intercepted method
+		System.out.println("Around after is running!");
+		System.out.println("******");
+	}
+	*/
+}
