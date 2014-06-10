@@ -3,22 +3,22 @@ package poc;
 import java.util.Arrays;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Aspect
 public class LoggingAspect {
-	
+	private static final Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 	@Before("execution (* poc.RandomNumberGenerator.roll(..))")
 	public void logBefore(JoinPoint joinPoint) {
-		System.out.println("logBefore() is running!");
-		System.out.println("about to run : " + joinPoint.getSignature().getName());
-		System.out.println("hijacked arguments : " + Arrays.toString(joinPoint.getArgs()));
-		System.out.println("******");
+		logger.debug("******");
+		logger.debug("logBefore() is running!");
+		logger.debug("about to run : " + joinPoint.getSignature().getName());
+		logger.debug("hijacked arguments : " + Arrays.toString(joinPoint.getArgs()));
+		logger.debug("******");
 	}
 	/*
 	@After("execution (* poc.RandomNumberGenerator.roll(..))")
@@ -33,10 +33,11 @@ public class LoggingAspect {
 		returning= "result"
 			)
 	public void logAfterReturning(JoinPoint joinPoint, Object result) {
-		System.out.println("logAfterReturning() is running!");
-		System.out.println("completed running : " + joinPoint.getSignature().getName());
-		System.out.println("Method returned value is : " + result);
-		System.out.println("******");
+		logger.debug("******");
+		logger.debug("logAfterReturning() is running!");
+		logger.debug("completed running : " + joinPoint.getSignature().getName());
+		logger.debug("Method returned value is : " + result);
+		logger.debug("******");
 	}
 	
 	/*
