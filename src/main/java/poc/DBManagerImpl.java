@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
+import com.j256.ormlite.db.DatabaseType;
+import com.j256.ormlite.db.SqliteDatabaseType;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
@@ -41,7 +43,6 @@ public class DBManagerImpl implements DBManager {
 			}
 		}
 		closeConnection();
-		
 	}
 
 	private void openConnection() {
@@ -50,7 +51,7 @@ public class DBManagerImpl implements DBManager {
 			connectionOpen = true;
 			logger.debug("Opened database successfully");
 		} catch (SQLException e) {
-			logger.error(e.getClass().getName() + ": " + e.getMessage());
+			logger.error("Error:" + e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
 		}
 	}
@@ -71,10 +72,24 @@ public class DBManagerImpl implements DBManager {
 			openConnection();
 			Dao<T, String> dao = DaoManager.createDao(connectionSource, clasz);
 			dao.create(record);
-			closeConnection();
 		} catch (SQLException e) {
 			logger.error(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
+		} finally {
+			closeConnection();
+		}
+	}
+	
+	public <T> void updateRecord(T record, Class<T> clasz) {
+		try {
+			openConnection();
+			Dao<T, String> dao = DaoManager.createDao(connectionSource, clasz);
+			dao.update(record);
+		} catch (SQLException e) {
+			logger.error(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		} finally {
+			closeConnection();
 		}
 	}
 
@@ -87,6 +102,22 @@ public class DBManagerImpl implements DBManager {
 			logger.error(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
 			return null;
+		} finally {
+			closeConnection();
+		}
+	}
+	
+	public <T> List<T> retrieveAllRecords(Class<T> clasz) {
+		try {
+			openConnection();
+			Dao<T, String> dao = DaoManager.createDao(connectionSource, clasz);
+			return dao.queryForAll();
+		} catch (SQLException e) {
+			logger.error(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+			return null;
+		} finally {
+			closeConnection();
 		}
 	}
 
