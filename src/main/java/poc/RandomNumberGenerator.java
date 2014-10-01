@@ -3,7 +3,7 @@ package poc;
 import java.util.Random;
 
 public class RandomNumberGenerator {
-	public int roll(RandomNumberConfigurer config) {
+	public static int roll(RandomNumberConfigurer config) {
 		int total = 0;
 		Random randomGenerator = new Random();
 		for (int i = 0; i < config.getNumberOfRolls(); i++) {
