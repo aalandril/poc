@@ -10,7 +10,7 @@ public abstract class Employee {
 	}
 	
 	private void initialiseEmployee() {
-		
+		setAge(18);
 	}
 
 	public EmployeeType getType() {
