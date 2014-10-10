@@ -26,7 +26,7 @@ public class InternalFrameDemo extends JFrame implements ActionListener {
 		
 		// Set up the GUI
 		desktop = new JDesktopPane(); // a specialized layered pane
-		//createFrame(); // create first 'window'
+		createFrame(); // create first 'window'
 		setContentPane(desktop);
 		setJMenuBar(createMenuBar());
 		
