@@ -23,6 +23,9 @@ public class DBManagerImplTest {
 		DBManagerImpl dbManager = new DBManagerImpl();
 		List<Class> tables = new ArrayList<Class>();
 		tables.add(Company.class);
+		tables.add(Developer.class);
+		tables.add(Manager.class);
+		tables.add(Tester.class);
 		dbManager.createDatabase(tables);
 	}
 	
@@ -31,6 +34,14 @@ public class DBManagerImplTest {
 		Company company = new Company();
 		company.setName("Test Ltd");
 		dbManager.insertRecord(company, Company.class);
+		
+		Developer dev = new Developer();
+		dev.setAge(18);
+		dbManager.insertRecord(dev, Developer.class);
+		
+		Manager man = new Manager();
+		man.setAge(18);
+		dbManager.insertRecord(man, Manager.class);
 	}
 	
 	@Test
@@ -51,7 +62,10 @@ public class DBManagerImplTest {
 	
 	@Test
 	public void retrieveRecordsTest() {
-		List<Company> results = dbManager.retrieveAllRecords(Company.class);
-		Assert.assertTrue(results.size()>0);
+		List<Company> companyResults = dbManager.retrieveAllRecords(Company.class);
+		Assert.assertTrue(companyResults.size()>0);
+		
+		List<Employee> employeeResults = dbManager.retrieveAllRecords(Employee.class);
+		Assert.assertTrue(employeeResults.size()>0);
 	}
 }

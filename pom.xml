@@ -6,7 +6,7 @@
 	<artifactId>poc</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	
-	<packaging>pom</packaging>
+	<packaging>jar</packaging>
 	<name>POC Pom</name>
 	
 	<description>pom file for proof of concept project</description>
@@ -29,11 +29,13 @@
 		<junit.version>4.8.2</junit.version>
 		<logback.version>1.0.10</logback.version>
 		<maven.enforcer.plugin>1.2</maven.enforcer.plugin>
-		<maven.version.range>[2.2.1,3.1.0]</maven.version.range>
+		<maven.version.range>[2.2.1,3.2.3]</maven.version.range>
 		<ormlite.version>4.48</ormlite.version>
 		<slf4j.version>1.7.7</slf4j.version>
 		<spring.version>3.2.4.RELEASE</spring.version>
 		<sqlite-jdbc.version>3.7.2</sqlite-jdbc.version>
+		<lanterna.version>2.1.9</lanterna.version>
+		<charva.version>1.1.4</charva.version>
 	</properties>
 	
 	<modules>
@@ -60,7 +62,7 @@
 									<searchTransitive>true</searchTransitive>
 									<excludes>
 										<exclude>javassist:javassist</exclude>
-										<exclude>commons-logging</exclude>
+										
 										<exclude>aspectj:aspectj</exclude>
 										<exclude>hsqldb:hsqldb</exclude>
 										<exclude>log4j:log4j</exclude>
@@ -152,6 +154,16 @@
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjtools</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.googlecode.lanterna</groupId>
+			<artifactId>lanterna</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>charva</groupId>
+			<artifactId>charva</artifactId>
 		</dependency>
 
 		<!-- Test Resources -->
@@ -253,6 +265,18 @@
 				<groupId>org.aspectj</groupId>
 				<artifactId>aspectjtools</artifactId>
 				<version>${aspectj.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.googlecode.lanterna</groupId>
+				<artifactId>lanterna</artifactId>
+				<version>${lanterna.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>charva</groupId>
+				<artifactId>charva</artifactId>
+				<version>${charva.version}</version>
 			</dependency>
 
 			<!-- Test Resources -->
