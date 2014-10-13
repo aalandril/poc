@@ -7,7 +7,7 @@ public class MainAppRunner {
 		// creating and showing this application's GUI
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				GUIBuilder.build();
+				GUIBuilder.buildFrame();
 			}
 		});
 	}

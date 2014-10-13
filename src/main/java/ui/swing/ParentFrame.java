@@ -11,7 +11,7 @@ import ui.swing.menu.MenuBuilder;
 public class ParentFrame extends JFrame {
 	private static final long serialVersionUID = -2911317340055080184L;
 	MainDesktopPane desktop = new MainDesktopPane();
-	MenuActionListener actionListener = new MenuActionListener();
+	MenuActionListener actionListener = new MenuActionListener(desktop);
 	public ParentFrame() {
 		super("ParentFrame");
 		
