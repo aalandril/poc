@@ -3,6 +3,8 @@ package ui.swing;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
+import ui.swing.frame.CompanyList;
+
 public class GUIBuilder {
 	/**
 	 * Create the GUI and show it. For thread safety, this method
@@ -21,7 +23,7 @@ public class GUIBuilder {
 	}
 	
 	public static JInternalFrame buildChildFrame() {
-		MyInternalFrame frame = new MyInternalFrame();
+		CompanyList frame = new CompanyList();
 		frame.setVisible(true);
 		//desktop.add(frame);
 		try {

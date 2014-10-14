@@ -1,8 +1,15 @@
 package ui.swing.frame;
 
+import java.awt.BorderLayout;
+import java.util.List;
+
 import javax.swing.JInternalFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.TableModel;
+import javax.swing.table.DefaultTableModel;
+
+import poc.Company;
+import poc.DBManagerImpl;
 
 public class CompanyList extends JInternalFrame {
 	private static final long serialVersionUID = 7025954823760323351L;
@@ -22,7 +29,32 @@ public class CompanyList extends JInternalFrame {
 		
 		// Set the window's location
 		setLocation(xOffset, yOffset);
-		//TableModel m = new DefaultTableModel();
-		final JTable table = new JTable();
+		
+		DBManagerImpl dbManager = new DBManagerImpl();
+		List<Company> names = dbManager.retrieveAllRecords(poc.Company.class);
+		//ArrayList<String> names = new ArrayList<String>();
+		//names.add("Test1");
+		//names.add("Test2");
+		
+		
+		Object[] columnNames = {"Company Name"};
+		DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+		
+		for (Company c : names) {
+			Object[] o = new Object[1];
+			o[0] = c.getName();
+			model.addRow(o);
+		}
+		
+		final JTable table = new JTable(model);
+		
+		this.setLayout(new BorderLayout());
+		this.add(new JScrollPane(table), BorderLayout.CENTER);
+
+		this.add(table.getTableHeader(), BorderLayout.NORTH);
+
+		this.setVisible(true);
+		this.setSize(200,200);
+
 	}
 }
