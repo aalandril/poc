@@ -5,10 +5,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+import ui.swing.menu.annotations.MenuItem;
+
+@MenuItem(topLevel = true)
 public class DocumentMenu {
 	public static JMenu build(ActionListener actionListener) {
 		
