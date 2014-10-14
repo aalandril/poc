@@ -49,7 +49,7 @@ public class DBManagerImpl implements DBManager {
 		try {
 			connectionSource = new JdbcConnectionSource(CONNECTION_STRING);
 			connectionOpen = true;
-			logger.debug("Opened database successfully");
+			logger.debug("Opened database connection successfully");
 		} catch (SQLException e) {
 			logger.error("Error:" + e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
@@ -60,6 +60,7 @@ public class DBManagerImpl implements DBManager {
 		try {
 			connectionSource.close();
 			connectionOpen = false;
+			logger.debug("Closed database connection successfully");
 		} catch (SQLException e) {
 			logger.error(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);

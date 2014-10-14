@@ -6,6 +6,9 @@ import java.util.List;
 import javax.swing.JInternalFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import poc.Company;
@@ -52,6 +55,26 @@ public class CompanyList extends JInternalFrame {
 		this.add(new JScrollPane(table), BorderLayout.CENTER);
 
 		this.add(table.getTableHeader(), BorderLayout.NORTH);
+		
+		table.setRowSelectionAllowed(true); //CellSelectionEnabled(true);
+		ListSelectionModel cellSelectionModel = table.getSelectionModel();
+		cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		cellSelectionModel.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				String selectedData = null;
+				
+				int[] selectedRow = table.getSelectedRows();
+				int[] selectedColumn = table.getSelectedColumns();
+				
+				for (int i = 0; i < selectedRow.length; i++) {
+					for (int j = 0; j < selectedColumn.length; j++) {
+						selectedData = (String) table.getValueAt(selectedRow[i], selectedColumn[j]);
+					}
+				}
+				System.out.println("Selected:" + selectedData);
+			}
+		});
 
 		this.setVisible(true);
 		this.setSize(200,200);
