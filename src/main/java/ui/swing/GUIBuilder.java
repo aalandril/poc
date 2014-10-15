@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
 import ui.swing.frame.CompanyList;
+import ui.swing.frame.CompanyNew;
 
 public class GUIBuilder {
 	/**
@@ -22,10 +23,20 @@ public class GUIBuilder {
 		frame.setVisible(true);
 	}
 	
-	public static JInternalFrame buildChildFrame() {
+	public static JInternalFrame buildCompanyListFrame() {
 		CompanyList frame = new CompanyList();
 		frame.setVisible(true);
-		//desktop.add(frame);
+		try {
+			frame.setSelected(true);
+		} catch (java.beans.PropertyVetoException e) {
+			
+		}
+		return frame;
+	}
+	
+	public static JInternalFrame buildCompanyNewFrame() {
+		CompanyNew frame = new CompanyNew();
+		frame.setVisible(true);
 		try {
 			frame.setSelected(true);
 		} catch (java.beans.PropertyVetoException e) {

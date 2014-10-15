@@ -1,4 +1,4 @@
-package ui.swing.menu;
+package ui.swing.menu.item;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,11 +8,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+import ui.swing.menu.IMenuItem;
 import ui.swing.menu.annotations.MenuItem;
 
 @MenuItem(topLevel = true)
-public class DocumentMenu {
-	public static JMenu build(ActionListener actionListener) {
+public class DocumentMenu implements IMenuItem {
+	public JMenu build(ActionListener actionListener) {
 		
 		// Set up the lone menu
 		JMenu menu = new JMenu("Document");
