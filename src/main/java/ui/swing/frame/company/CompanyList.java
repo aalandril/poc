@@ -1,8 +1,9 @@
-package ui.swing.frame;
+package ui.swing.frame.company;
 
 import java.awt.BorderLayout;
 import java.util.List;
 
+import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -13,12 +14,13 @@ import javax.swing.table.DefaultTableModel;
 
 import poc.Company;
 import poc.DBManagerImpl;
+import ui.swing.GUIBuilder;
 
 public class CompanyList extends JInternalFrame {
 	private static final long serialVersionUID = 7025954823760323351L;
 	static final int xOffset = 30, yOffset = 30;
 	
-	public CompanyList() {
+	public CompanyList(JDesktopPane desktop) {
 		super("Document #CompanyList",
 				true, //resizable
 				true, //closable
@@ -26,6 +28,7 @@ public class CompanyList extends JInternalFrame {
 				true); //iconifiable
 		
 		// Create the GUI and put it in the window
+		final JDesktopPane localDesktop = desktop;
 		
 		// The set the window size or call pack
 		setSize(300,300);
@@ -70,6 +73,7 @@ public class CompanyList extends JInternalFrame {
 				for (int i = 0; i < selectedRow.length; i++) {
 					for (int j = 0; j < selectedColumn.length; j++) {
 						selectedData = (String) table.getValueAt(selectedRow[i], selectedColumn[j]);
+						GUIBuilder.buildCompanyEditFrame(localDesktop, selectedData);
 					}
 				}
 				System.out.println("Selected:" + selectedData);

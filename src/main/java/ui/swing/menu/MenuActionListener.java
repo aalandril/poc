@@ -17,9 +17,9 @@ public class MenuActionListener implements ActionListener {
 	// React to menu selections
 	public void actionPerformed(ActionEvent e) {
 		if ("new".equals(e.getActionCommand())) {
-			desktop.add(GUIBuilder.buildCompanyNewFrame());
+			GUIBuilder.buildCompanyNewFrame(desktop);
 		} else if ("list".equals(e.getActionCommand())) {
-			desktop.add(GUIBuilder.buildCompanyListFrame());
+			GUIBuilder.buildCompanyListFrame(desktop);
 		} else {
 			quitAction();
 		}

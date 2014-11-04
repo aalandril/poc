@@ -1,4 +1,4 @@
-package ui.swing.frame;
+package ui.swing.frame.company;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -19,7 +19,7 @@ public class CompanyNew extends JInternalFrame implements ActionListener {
 	private static final long serialVersionUID = 7025954823760323351L;
 	static final int xOffset = 30, yOffset = 30;
 	CompanyActions actions;
-	JTextField companyName;
+	JTextField companyNameField;
 	DBManager manager = new DBManagerImpl();
 	
 	public CompanyNew() {
@@ -41,14 +41,14 @@ public class CompanyNew extends JInternalFrame implements ActionListener {
 		
 		JPanel panel = new JPanel();
 		JLabel companyNameLabel = new JLabel("Company Name:");
-		companyName = new JTextField(20);
+		companyNameField = new JTextField(20);
 		JButton saveButton = new JButton("Save");
 		saveButton.addActionListener(this);
 		
 		this.setLayout(new BorderLayout());
 
 		panel.add(companyNameLabel);
-		panel.add(companyName);
+		panel.add(companyNameField);
 		panel.add(saveButton);
 
 		this.add(panel);
@@ -59,9 +59,9 @@ public class CompanyNew extends JInternalFrame implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) { 
 		if ("Save".equals(e.getActionCommand())) { 
-			System.out.println("Save:" + companyName.getText());
+			System.out.println("Save:" + companyNameField.getText());
 			Company company = new Company();
-			company.setName(companyName.getText());
+			company.setName(companyNameField.getText());
 			manager.insertRecord(company, Company.class);
 		} else {
 			System.out.println("Else");

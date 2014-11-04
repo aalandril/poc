@@ -1,10 +1,12 @@
 package ui.swing;
 
+import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
-import ui.swing.frame.CompanyList;
-import ui.swing.frame.CompanyNew;
+import ui.swing.frame.company.CompanyEdit;
+import ui.swing.frame.company.CompanyList;
+import ui.swing.frame.company.CompanyNew;
 
 public class GUIBuilder {
 	/**
@@ -23,18 +25,19 @@ public class GUIBuilder {
 		frame.setVisible(true);
 	}
 	
-	public static JInternalFrame buildCompanyListFrame() {
-		CompanyList frame = new CompanyList();
+	public static JInternalFrame buildCompanyListFrame(JDesktopPane desktop) {
+		CompanyList frame = new CompanyList(desktop);
 		frame.setVisible(true);
 		try {
 			frame.setSelected(true);
 		} catch (java.beans.PropertyVetoException e) {
 			
 		}
+		desktop.add(frame);
 		return frame;
 	}
 	
-	public static JInternalFrame buildCompanyNewFrame() {
+	public static JInternalFrame buildCompanyNewFrame(JDesktopPane desktop) {
 		CompanyNew frame = new CompanyNew();
 		frame.setVisible(true);
 		try {
@@ -42,6 +45,19 @@ public class GUIBuilder {
 		} catch (java.beans.PropertyVetoException e) {
 			
 		}
+		desktop.add(frame);
+		return frame;
+	}
+	
+	public static JInternalFrame buildCompanyEditFrame(JDesktopPane desktop, String companyName) {
+		CompanyEdit frame = new CompanyEdit(companyName);
+		frame.setVisible(true);
+		try {
+			frame.setSelected(true);
+		} catch (java.beans.PropertyVetoException e) {
+			
+		}
+		desktop.add(frame);
 		return frame;
 	}
 }
