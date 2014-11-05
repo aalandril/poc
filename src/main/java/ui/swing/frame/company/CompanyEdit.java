@@ -13,12 +13,10 @@ import javax.swing.JTextField;
 import poc.Company;
 import poc.DBManager;
 import poc.DBManagerImpl;
-import poc.swing.action.CompanyActions;
 
 public class CompanyEdit extends JInternalFrame implements ActionListener {
 	private static final long serialVersionUID = 7025954823760323351L;
 	static final int xOffset = 200, yOffset = 40;
-	CompanyActions actions;
 	JTextField companyNameField;
 	DBManager manager = new DBManagerImpl();
 	
@@ -28,8 +26,6 @@ public class CompanyEdit extends JInternalFrame implements ActionListener {
 				true, //closable
 				true, //maximizable
 				true); //iconifiable
-		
-		actions = new CompanyActions();
 		
 		// Create the GUI and put it in the window
 		

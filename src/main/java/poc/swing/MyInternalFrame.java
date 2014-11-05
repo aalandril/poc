@@ -3,6 +3,7 @@ package poc.swing;
 import javax.swing.JInternalFrame;
 
 public class MyInternalFrame extends JInternalFrame {
+	private static final long serialVersionUID = -4035084668449241205L;
 	static int openFrameCount = 0;
 	static final int xOffset = 30, yOffset = 30;
 	

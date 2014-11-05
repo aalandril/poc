@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
+import ui.swing.frame.inventory.InventoryFrame;
 import ui.swing.menu.MenuActionListener;
 import ui.swing.menu.MenuBuilder;
 
@@ -30,30 +31,30 @@ public class ParentFrame extends JFrame {
 		
 		// Set up the GUI
 		JInternalFrame topLeft = new JInternalFrame("1");
+		topLeft.setName("1");
 		topLeft.setSize(innerFrameWidth, halfHeight);
 		topLeft.setLocation(0, 0);
 		topLeft.setVisible(true);
 		desktop.add(topLeft);
 		
 		JInternalFrame bottomLeft = new JInternalFrame("2");
+		bottomLeft.setName("2");
 		bottomLeft.setSize(innerFrameWidth, halfHeight);
 		bottomLeft.setLocation(0, halfHeight);
 		bottomLeft.setVisible(true);
 		desktop.add(bottomLeft);
 		
 		JInternalFrame topRight = new JInternalFrame("3");
+		topRight.setName("3");
 		topRight.setSize(innerFrameWidth, halfHeight);
 		topRight.setLocation(rightPaneStart, 0);
 		topRight.setVisible(true);
 		desktop.add(topRight);
 		
-		JInternalFrame bottomRight = new JInternalFrame("4");
-		bottomRight.setSize(innerFrameWidth, halfHeight);
-		bottomRight.setLocation(rightPaneStart, halfHeight);
-		bottomRight.setVisible(true);
-		desktop.add(bottomRight);
+		desktop.add(new InventoryFrame(desktop, innerFrameWidth, halfHeight, rightPaneStart, halfHeight));
 		
 		JInternalFrame center = new JInternalFrame("5");
+		center.setName("5");
 		center.setSize(centerFrameWidth, centerFrameHeight);
 		center.setLocation(innerFrameWidth, 0);
 		center.setVisible(true);
