@@ -7,6 +7,7 @@ public class MainDesktopPane extends JDesktopPane {
 
 	public MainDesktopPane() {
 		super();
+		ComponentMediator.getInstance().setMainDesktopPane(this);
 		
 		// Make dragging a little faster but perhaps uglier
 		this.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);

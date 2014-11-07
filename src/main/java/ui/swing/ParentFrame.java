@@ -16,7 +16,7 @@ public class ParentFrame extends JFrame {
 	MenuActionListener actionListener = new MenuActionListener(desktop);
 	public ParentFrame() {
 		super("ParentFrame");
-		
+		ComponentMediator.getInstance().setParentFrame(this);
 		// Make the big window indented by 50 pixels from each edge
 		int inset = 50;
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -52,14 +52,14 @@ public class ParentFrame extends JFrame {
 		desktop.add(topRight);
 		
 		desktop.add(new InventoryFrame(desktop, innerFrameWidth, halfHeight, rightPaneStart, halfHeight));
-		
+		/*
 		JInternalFrame center = new JInternalFrame("5");
 		center.setName("5");
 		center.setSize(centerFrameWidth, centerFrameHeight);
 		center.setLocation(innerFrameWidth, 0);
 		center.setVisible(true);
 		desktop.add(center);
-		
+		*/
 		//createFrame(); // create first 'window'
 		setContentPane(desktop);
 		setJMenuBar(MenuBuilder.build(actionListener));
