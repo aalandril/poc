@@ -2,6 +2,7 @@ package ui.swing;
 
 import ui.swing.menu.MenuActionListener;
 import ui.swing.panel.InventoryPanel;
+import ui.swing.panel.StatsPanel;
 
 public class ComponentMediator {
 	private static ComponentMediator instance = new ComponentMediator();
@@ -14,6 +15,7 @@ public class ComponentMediator {
 	private ParentFrame parentFrame;
 	private MainDesktopPane mainDesktopPane;
 	private InventoryPanel inventoryPanel;
+	private StatsPanel statsPanel;
 
 	public MenuActionListener getMenuActionListener() {
 		return menuActionListener;
@@ -46,7 +48,13 @@ public class ComponentMediator {
 	public void setMainDesktopPane(MainDesktopPane mainDesktopPane) {
 		this.mainDesktopPane = mainDesktopPane;
 	}
-	
-	
+
+	public StatsPanel getStatsPanel() {
+		return statsPanel;
+	}
+
+	public void setStatsPanel(StatsPanel statsPanel) {
+		this.statsPanel = statsPanel;
+	}
 	
 }

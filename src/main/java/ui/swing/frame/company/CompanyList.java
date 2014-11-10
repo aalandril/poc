@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import poc.Company;
 import poc.DBManagerImpl;
 import ui.swing.GUIBuilder;
+import ui.swing.delegate.DelegateSimple;
 
 public class CompanyList extends JInternalFrame {
 	private static final long serialVersionUID = 7025954823760323351L;
@@ -36,8 +37,8 @@ public class CompanyList extends JInternalFrame {
 		// Set the window's location
 		setLocation(xOffset, yOffset);
 		
-		DBManagerImpl dbManager = new DBManagerImpl();
-		List<Company> names = dbManager.retrieveAllRecords(poc.Company.class);
+		List<Company> names = DelegateSimple.getInstance().retrieveAllRecords(poc.Company.class);
+		
 		//ArrayList<String> names = new ArrayList<String>();
 		//names.add("Test1");
 		//names.add("Test2");

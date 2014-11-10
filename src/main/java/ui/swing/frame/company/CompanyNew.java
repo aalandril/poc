@@ -14,13 +14,13 @@ import poc.Company;
 import poc.DBManager;
 import poc.DBManagerImpl;
 import poc.swing.action.CompanyActions;
+import ui.swing.delegate.DelegateSimple;
 
 public class CompanyNew extends JInternalFrame implements ActionListener {
 	private static final long serialVersionUID = 7025954823760323351L;
 	static final int xOffset = 30, yOffset = 30;
 	CompanyActions actions;
 	JTextField companyNameField;
-	DBManager manager = new DBManagerImpl();
 	
 	public CompanyNew() {
 		super("Document #CompanyNew",
@@ -59,12 +59,11 @@ public class CompanyNew extends JInternalFrame implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) { 
 		if ("Save".equals(e.getActionCommand())) { 
-			System.out.println("Save:" + companyNameField.getText());
 			Company company = new Company();
 			company.setName(companyNameField.getText());
-			manager.insertRecord(company, Company.class);
+			DelegateSimple.getInstance().insertRecord(company, Company.class);
 		} else {
-			System.out.println("Else");
+			// Else
 		}
 	}
 }

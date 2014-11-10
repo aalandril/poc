@@ -6,9 +6,9 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
-import ui.swing.frame.inventory.InventoryFrame;
 import ui.swing.menu.MenuActionListener;
 import ui.swing.menu.MenuBuilder;
+import ui.swing.panel.InventoryPanel;
 
 public class ParentFrame extends JFrame {
 	private static final long serialVersionUID = -2911317340055080184L;
@@ -51,7 +51,9 @@ public class ParentFrame extends JFrame {
 		topRight.setVisible(true);
 		desktop.add(topRight);
 		
-		desktop.add(new InventoryFrame(desktop, innerFrameWidth, halfHeight, rightPaneStart, halfHeight));
+		//desktop.add(new InventoryFrame(desktop, innerFrameWidth, halfHeight, rightPaneStart, halfHeight));
+		desktop.add(new InventoryPanel());
+		
 		/*
 		JInternalFrame center = new JInternalFrame("5");
 		center.setName("5");

@@ -13,12 +13,12 @@ import javax.swing.JTextField;
 import poc.Company;
 import poc.DBManager;
 import poc.DBManagerImpl;
+import ui.swing.delegate.DelegateSimple;
 
 public class CompanyEdit extends JInternalFrame implements ActionListener {
 	private static final long serialVersionUID = 7025954823760323351L;
 	static final int xOffset = 200, yOffset = 40;
 	JTextField companyNameField;
-	DBManager manager = new DBManagerImpl();
 	
 	public CompanyEdit(String companyName) {
 		super("Document #CompanyEdit",
@@ -60,7 +60,7 @@ public class CompanyEdit extends JInternalFrame implements ActionListener {
 			System.out.println("Save:" + companyNameField.getText());
 			Company company = new Company();
 			company.setName(companyNameField.getText());
-			manager.insertRecord(company, Company.class);
+			DelegateSimple.getInstance().insertRecord(company, Company.class);
 		} else {
 			System.out.println("Else");
 		}

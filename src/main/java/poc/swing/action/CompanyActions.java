@@ -6,7 +6,8 @@ import java.awt.event.ActionListener;
 public class CompanyActions implements ActionListener {
 	public void actionPerformed(ActionEvent e) { 
 		if ("Save".equals(e.getActionCommand())) { 
-			System.out.println("Save");
+			//SaveCompanyAction a = new SaveCompanyAction();
+			//a.actionPerformed(e);
 		} else {
 			System.out.println("Else");
 		}

@@ -18,7 +18,8 @@ public class GUIBuilder {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		
 		// Create and set up the window.
-		ParentFrame frame = new ParentFrame();
+		//ParentFrame frame = new ParentFrame();
+		Mediator frame = new Mediator();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// Display the window
