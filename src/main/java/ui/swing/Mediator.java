@@ -3,16 +3,20 @@ package ui.swing;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Properties;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
 
 import ui.swing.menu.MenuActionListener;
 import ui.swing.menu.MenuBuilder;
 import ui.swing.panel.InventoryPanel;
+import ui.swing.panel.LocationPanel;
+import ui.swing.panel.SidePanel;
+import ui.swing.panel.SkillsPanel;
 import ui.swing.panel.StatsPanel;
-import ui.swing.utils.Constants;
+import ui.swing.utils.PropertyUtils;
+import ui.swing.utils.UIUtils;
 
 
 // Using the Mediator Pattern
@@ -22,31 +26,48 @@ public class Mediator extends JFrame {
 	MenuActionListener actionListener = new MenuActionListener(desktop);
 	private InventoryPanel inventoryPanel;
 	private StatsPanel statsPanel;
+	private SkillsPanel skillsPanel;
+	private LocationPanel locationPanel;
 	public Mediator() {
 		super();
 		// Set up the GUI
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int halfHeight = screenSize.height / 2;
-		
-		JPanel topLeftPanel = new JPanel();
-		topLeftPanel.setName("topLeftPanel");
-		topLeftPanel.setVisible(true);
-		topLeftPanel.setBorder(new BevelBorder(0));
-		topLeftPanel.setBounds(0, 0, Constants.INNER_FRAME_WIDTH, halfHeight);
-		topLeftPanel.setLayout(new BorderLayout());
-		
-		// Initially put the InventoryPanel into the top left panel
-		topLeftPanel.add(new InventoryPanel());
+		Properties props = PropertyUtils.loadProperties();
+		// Create the container panel structure
+		JPanel topLeftPanel = new SidePanel("topLeftPanel");
+		topLeftPanel.setLocation(Integer.parseInt(props.getProperty("topLeft.xPos")), Integer.parseInt(props.getProperty("topLeft.yPos")));
+		topLeftPanel.setLayout(new BorderLayout());	
 		desktop.add(topLeftPanel);
 		
+		JPanel bottomLeftPanel = new SidePanel("bottomLeftPanel");
+		bottomLeftPanel.setLocation(0, UIUtils.getHalfHeight());
+		bottomLeftPanel.setLayout(new BorderLayout());
+		desktop.add(bottomLeftPanel);
+		
+		JPanel topRightPanel = new SidePanel("topRightPanel");
+		topRightPanel.setLocation(UIUtils.getRightPaneStart(), 0);
+		topRightPanel.setLayout(new BorderLayout());	
+		desktop.add(topRightPanel);
+		
+		JPanel bottomRightPanel = new SidePanel("bottomRightPanel");
+		bottomRightPanel.setLocation(UIUtils.getRightPaneStart(), UIUtils.getHalfHeight());
+		bottomRightPanel.setLayout(new BorderLayout());
+		desktop.add(bottomRightPanel);
+		
+		// Set the panels into their initial locations
+		inventoryPanel = new InventoryPanel();
+		topLeftPanel.add(inventoryPanel);
+				
 		statsPanel = new StatsPanel();
-		statsPanel.setName("inventoryPanel");
-		statsPanel.setBounds(0, halfHeight, Constants.INNER_FRAME_WIDTH, halfHeight);
-		statsPanel.setVisible(true);
-		statsPanel.setBorder(new BevelBorder(0));
-		desktop.add(statsPanel);
+		bottomLeftPanel.add(statsPanel);
 		
+		skillsPanel = new SkillsPanel();
+		topRightPanel.add(skillsPanel);
 		
+		locationPanel = new LocationPanel();
+		bottomRightPanel.add(locationPanel);
+		
+		// Show the main window
 		this.setVisible(true);
 		this.setBounds(0, 0, screenSize.width, screenSize.height);
 		setContentPane(desktop);
