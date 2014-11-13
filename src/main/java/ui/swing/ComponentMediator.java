@@ -1,5 +1,7 @@
 package ui.swing;
 
+import javax.swing.JPanel;
+
 import ui.swing.menu.MenuActionListener;
 import ui.swing.panel.InventoryPanel;
 import ui.swing.panel.LocationPanel;
@@ -20,6 +22,7 @@ public class ComponentMediator {
 	private StatsPanel statsPanel;
 	private SkillsPanel skillsPanel;
 	private LocationPanel locationPanel;
+	private JPanel mainPanel;
 
 	public MenuActionListener getMenuActionListener() {
 		return menuActionListener;
@@ -75,6 +78,14 @@ public class ComponentMediator {
 
 	public void setLocationPanel(LocationPanel locationPanel) {
 		this.locationPanel = locationPanel;
+	}
+
+	public JPanel getMainPanel() {
+		return mainPanel;
+	}
+
+	public void setMainPanel(JPanel mainPanel) {
+		this.mainPanel = mainPanel;
 	}
 	
 }

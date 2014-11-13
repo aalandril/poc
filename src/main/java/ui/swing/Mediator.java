@@ -63,6 +63,7 @@ public class Mediator extends JFrame {
 		mainPanel.setSize(screenSize.width - (Constants.INNER_FRAME_WIDTH * 2), screenSize.height);
 		mainPanel.setVisible(true);
 		mainPanel.setBorder(new BevelBorder(0));
+		ComponentMediator.getInstance().setMainPanel(mainPanel);
 		desktop.add(mainPanel);
 		
 		// Set the panels into their initial locations

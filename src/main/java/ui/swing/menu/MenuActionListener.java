@@ -9,8 +9,7 @@ import javax.swing.JInternalFrame;
 import ui.swing.ComponentMediator;
 import ui.swing.GUIBuilder;
 import ui.swing.frame.inventory.InventoryFrame;
-import ui.swing.frame.wizard.WizardPageOne;
-import ui.swing.utils.Constants;
+import ui.swing.panel.WizardPanelOne;
 
 public class MenuActionListener implements ActionListener {
 	public MenuActionListener(JDesktopPane desktop) {
@@ -23,16 +22,9 @@ public class MenuActionListener implements ActionListener {
 	
 	// React to menu selections
 	public void actionPerformed(ActionEvent e) {
-		if ("new".equals(e.getActionCommand())) {
-			//GUIBuilder.buildCompanyNewFrame(desktop);
-			
-			JInternalFrame center = new WizardPageOne();
-			center.setName("Please enter details");
-			center.setLocation(Constants.INNER_FRAME_WIDTH, 0);
-			center.setVisible(true);
-			center.moveToFront();
-			getDesktop().add(center);
-			
+		if ("new".equals(e.getActionCommand())) {			
+			WizardPanelOne center = new WizardPanelOne();
+			ComponentMediator.getInstance().getMainPanel().add(center);
 		} else if ("list".equals(e.getActionCommand())) {
 			GUIBuilder.buildCompanyListFrame(getDesktop());
 			InventoryFrame frame = (InventoryFrame) getFrame("Inventory");
