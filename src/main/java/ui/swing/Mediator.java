@@ -7,6 +7,7 @@ import java.util.Properties;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
 
 import ui.swing.menu.MenuActionListener;
 import ui.swing.menu.MenuBuilder;
@@ -15,6 +16,7 @@ import ui.swing.panel.LocationPanel;
 import ui.swing.panel.SidePanel;
 import ui.swing.panel.SkillsPanel;
 import ui.swing.panel.StatsPanel;
+import ui.swing.utils.Constants;
 import ui.swing.utils.PropertyUtils;
 import ui.swing.utils.UIUtils;
 
@@ -54,6 +56,15 @@ public class Mediator extends JFrame {
 		bottomRightPanel.setLayout(new BorderLayout());
 		desktop.add(bottomRightPanel);
 		
+		JPanel mainPanel = new JPanel();
+		mainPanel.setLocation(Constants.INNER_FRAME_WIDTH, 0);
+		mainPanel.setLayout(new BorderLayout());
+		mainPanel.setName("mainPanel");
+		mainPanel.setSize(screenSize.width - (Constants.INNER_FRAME_WIDTH * 2), screenSize.height);
+		mainPanel.setVisible(true);
+		mainPanel.setBorder(new BevelBorder(0));
+		desktop.add(mainPanel);
+		
 		// Set the panels into their initial locations
 		inventoryPanel = new InventoryPanel();
 		topLeftPanel.add(inventoryPanel);
@@ -77,5 +88,29 @@ public class Mediator extends JFrame {
 	
 	public InventoryPanel getInventoryPanel() {
 		return inventoryPanel;
+	}
+
+	public MainDesktopPane getDesktop() {
+		return desktop;
+	}
+
+	public MenuActionListener getActionListener() {
+		return actionListener;
+	}
+
+	public StatsPanel getStatsPanel() {
+		return statsPanel;
+	}
+
+	public SkillsPanel getSkillsPanel() {
+		return skillsPanel;
+	}
+
+	public LocationPanel getLocationPanel() {
+		return locationPanel;
+	}
+	
+	public void launchWizard() {
+		
 	}
 }
