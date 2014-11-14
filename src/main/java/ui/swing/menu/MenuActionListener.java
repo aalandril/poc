@@ -8,12 +8,19 @@ import javax.swing.JInternalFrame;
 
 import ui.swing.ComponentMediator;
 import ui.swing.GUIBuilder;
+import ui.swing.Mediator;
 import ui.swing.frame.inventory.InventoryFrame;
 import ui.swing.panel.WizardPanelOne;
 
 public class MenuActionListener implements ActionListener {
+	private Mediator parent;
 	public MenuActionListener(JDesktopPane desktop) {
 		ComponentMediator.getInstance().setMenuActionListener(this);
+	}
+	
+	public MenuActionListener(JDesktopPane desktop, Mediator parent) {
+		ComponentMediator.getInstance().setMenuActionListener(this);
+		this.parent = parent;
 	}
 	
 	private JDesktopPane getDesktop() {
@@ -25,6 +32,9 @@ public class MenuActionListener implements ActionListener {
 		if ("new".equals(e.getActionCommand())) {			
 			WizardPanelOne center = new WizardPanelOne();
 			ComponentMediator.getInstance().getMainPanel().add(center);
+			//this.parent.getMainPanel().add(center);
+			ComponentMediator.getInstance().getMainPanel().repaint();
+			ComponentMediator.getInstance().getMainPanel().revalidate();
 		} else if ("list".equals(e.getActionCommand())) {
 			GUIBuilder.buildCompanyListFrame(getDesktop());
 			InventoryFrame frame = (InventoryFrame) getFrame("Inventory");

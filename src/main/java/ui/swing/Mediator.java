@@ -16,6 +16,7 @@ import ui.swing.panel.LocationPanel;
 import ui.swing.panel.SidePanel;
 import ui.swing.panel.SkillsPanel;
 import ui.swing.panel.StatsPanel;
+import ui.swing.panel.WizardPanelOne;
 import ui.swing.utils.Constants;
 import ui.swing.utils.PropertyUtils;
 import ui.swing.utils.UIUtils;
@@ -25,11 +26,12 @@ import ui.swing.utils.UIUtils;
 public class Mediator extends JFrame {
 	private static final long serialVersionUID = -7179379880575472504L;
 	MainDesktopPane desktop = new MainDesktopPane();
-	MenuActionListener actionListener = new MenuActionListener(desktop);
+	MenuActionListener actionListener = new MenuActionListener(desktop, this);
 	private InventoryPanel inventoryPanel;
 	private StatsPanel statsPanel;
 	private SkillsPanel skillsPanel;
 	private LocationPanel locationPanel;
+	private JPanel mainPanel;
 	public Mediator() {
 		super();
 		// Set up the GUI
@@ -64,6 +66,7 @@ public class Mediator extends JFrame {
 		mainPanel.setVisible(true);
 		mainPanel.setBorder(new BevelBorder(0));
 		ComponentMediator.getInstance().setMainPanel(mainPanel);
+		this.mainPanel = mainPanel;
 		desktop.add(mainPanel);
 		
 		// Set the panels into their initial locations
@@ -111,6 +114,10 @@ public class Mediator extends JFrame {
 		return locationPanel;
 	}
 	
+	public JPanel getMainPanel() {
+		return mainPanel;
+	}
+
 	public void launchWizard() {
 		
 	}

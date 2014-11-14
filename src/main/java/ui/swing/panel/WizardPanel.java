@@ -1,6 +1,5 @@
 package ui.swing.panel;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -17,6 +16,6 @@ public abstract class WizardPanel extends JPanel {
 		this.setSize(screenSize.width - (Constants.INNER_FRAME_WIDTH * 2), screenSize.height);
 		this.setVisible(true);
 		this.setBorder(new BevelBorder(0));
-		this.setBackground(Color.BLACK);
+		//this.setBackground(Color.GRAY);
 	}
 }

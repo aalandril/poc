@@ -26,7 +26,7 @@ public class WizardPanelOne extends WizardPanel {
 
 		this.add(companyNameLabel);
 		this.add(companyNameField);
-		this.add(saveButton);
+		//this.add(saveButton);
 		
 		companyNameField.setText("test");
 	}
