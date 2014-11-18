@@ -9,11 +9,13 @@ import javax.swing.JInternalFrame;
 import ui.swing.ComponentMediator;
 import ui.swing.GUIBuilder;
 import ui.swing.Mediator;
+import ui.swing.command.WizardCommand;
+import ui.swing.delegate.DelegateSimple;
 import ui.swing.frame.inventory.InventoryFrame;
-import ui.swing.panel.WizardPanelOne;
 
 public class MenuActionListener implements ActionListener {
 	private Mediator parent;
+	DelegateSimple server;
 	public MenuActionListener(JDesktopPane desktop) {
 		ComponentMediator.getInstance().setMenuActionListener(this);
 	}
@@ -23,18 +25,28 @@ public class MenuActionListener implements ActionListener {
 		this.parent = parent;
 	}
 	
+	public MenuActionListener(JDesktopPane desktop, Mediator parent, DelegateSimple server) {
+		ComponentMediator.getInstance().setMenuActionListener(this);
+		this.parent = parent;
+		this.server = server;
+	}
+	
 	private JDesktopPane getDesktop() {
 		return ComponentMediator.getInstance().getMainDesktopPane();
 	}
 	
 	// React to menu selections
 	public void actionPerformed(ActionEvent e) {
-		if ("new".equals(e.getActionCommand())) {			
+		if ("new".equals(e.getActionCommand())) {
+			// Call Command Pattern
+			new WizardCommand(server, parent).actionPerformed(e);
+			/*
 			WizardPanelOne center = new WizardPanelOne();
 			ComponentMediator.getInstance().getMainPanel().add(center);
 			//this.parent.getMainPanel().add(center);
 			ComponentMediator.getInstance().getMainPanel().repaint();
 			ComponentMediator.getInstance().getMainPanel().revalidate();
+			*/
 		} else if ("list".equals(e.getActionCommand())) {
 			GUIBuilder.buildCompanyListFrame(getDesktop());
 			InventoryFrame frame = (InventoryFrame) getFrame("Inventory");

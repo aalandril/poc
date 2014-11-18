@@ -2,12 +2,11 @@ package ui.swing.delegate;
 
 import java.util.List;
 
-import poc.Company;
 import poc.DBManagerImpl;
 
 // Implementation of the Delegate Pattern, delegating responsibility for calls
 // to the server-side code to this singleton.
-public class DelegateSimple {
+public class DelegateSimple implements Delegate {
 	//RemoteInterface remoteInterface;
 	
 	private static final DelegateSimple INSTANCE = new DelegateSimple();

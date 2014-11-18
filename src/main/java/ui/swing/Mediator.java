@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
+import ui.swing.delegate.DelegateSimple;
 import ui.swing.menu.MenuActionListener;
 import ui.swing.menu.MenuBuilder;
 import ui.swing.panel.InventoryPanel;
@@ -26,14 +27,17 @@ import ui.swing.utils.UIUtils;
 public class Mediator extends JFrame {
 	private static final long serialVersionUID = -7179379880575472504L;
 	MainDesktopPane desktop = new MainDesktopPane();
-	MenuActionListener actionListener = new MenuActionListener(desktop, this);
+	MenuActionListener actionListener;
 	private InventoryPanel inventoryPanel;
 	private StatsPanel statsPanel;
 	private SkillsPanel skillsPanel;
 	private LocationPanel locationPanel;
+	private DelegateSimple server;
 	private JPanel mainPanel;
 	public Mediator() {
 		super();
+		server = DelegateSimple.getInstance();
+		actionListener = new MenuActionListener(desktop, this, server);
 		// Set up the GUI
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		Properties props = PropertyUtils.loadProperties();
