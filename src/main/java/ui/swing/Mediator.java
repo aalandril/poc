@@ -17,7 +17,6 @@ import ui.swing.panel.LocationPanel;
 import ui.swing.panel.SidePanel;
 import ui.swing.panel.SkillsPanel;
 import ui.swing.panel.StatsPanel;
-import ui.swing.panel.WizardPanelOne;
 import ui.swing.utils.Constants;
 import ui.swing.utils.PropertyUtils;
 import ui.swing.utils.UIUtils;
