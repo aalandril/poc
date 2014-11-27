@@ -1,13 +1,12 @@
 package poc;
 
-public enum EmployeeType {
-	DEVELOPER("Developer"),
-	TESTER("Tester"),
-	MANAGER("Manager");
+public enum Gender {
+	MALE("Male"),
+	FEMALE("Female");
 	
 	private String value;
 	
-	EmployeeType(String value) {
+	Gender(String value) {
 		this.value = value;
 	}
 	
@@ -15,8 +14,8 @@ public enum EmployeeType {
 		return value;
 	}
 	
-	public static EmployeeType getEnum(String value) {
-		for (EmployeeType v : values())
+	public static Gender getEnum(String value) {
+		for (Gender v : values())
 			if (v.getValue().equalsIgnoreCase(value)) return v;	
 		throw new IllegalArgumentException();
 	}
@@ -24,7 +23,7 @@ public enum EmployeeType {
 	public static String[] getValues() {
 		String[] values = new String[values().length];
 		int i = 0;
-		for (EmployeeType v : values()) {
+		for (Gender v : values()) {
 			values[i] = v.getValue();
 			i++;
 		}
@@ -35,5 +34,4 @@ public enum EmployeeType {
 	public String toString() {
 		return this.getValue();
 	}
-
 }

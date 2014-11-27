@@ -6,6 +6,10 @@ import javax.swing.AbstractAction;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import poc.Employee;
+import poc.EmployeeType;
+import poc.Gender;
+import ui.swing.ComponentMediator;
 import ui.swing.delegate.Delegate;
 
 public class WizardCommand extends AbstractAction {
@@ -20,17 +24,29 @@ public class WizardCommand extends AbstractAction {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		String s = JOptionPane.showInputDialog(parent,"Enter Name:");
-		Object[] roles = {"Manager", "Developer", "Tester"};
-		String s2 = (String) JOptionPane.showInputDialog(parent,
+		String name = JOptionPane.showInputDialog(parent,"Enter Name:");
+		String gender = (String) JOptionPane.showInputDialog(parent,
+				"Select Gender:",
+				"",
+				JOptionPane.PLAIN_MESSAGE,
+				null,
+				Gender.getValues(),
+				"");
+
+		String role = (String) JOptionPane.showInputDialog(parent,
 				"Select Role:",
 				"",
 				JOptionPane.PLAIN_MESSAGE,
 				null,
-				roles,
+				EmployeeType.getValues(),
 				"");
-		System.out.println(s + ":" + s2);
+		Employee e = new Employee(EmployeeType.getEnum(role));
+		e.setName(name);
+		e.setGender(Gender.getEnum(gender));
+		e.setAge(18);
+
+		ComponentMediator.getInstance().setEmployee(e);
+		ComponentMediator.getInstance().getStatsPanel().refresh();
 	}
 
 }

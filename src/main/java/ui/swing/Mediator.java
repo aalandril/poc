@@ -74,10 +74,10 @@ public class Mediator extends JFrame {
 		
 		// Set the panels into their initial locations
 		inventoryPanel = new InventoryPanel();
-		topLeftPanel.add(inventoryPanel);
+		bottomLeftPanel.add(inventoryPanel);
 				
 		statsPanel = new StatsPanel();
-		bottomLeftPanel.add(statsPanel);
+		topLeftPanel.add(statsPanel);
 		
 		skillsPanel = new SkillsPanel();
 		topRightPanel.add(skillsPanel);

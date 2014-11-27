@@ -11,8 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import poc.Company;
-import poc.DBManager;
-import poc.DBManagerImpl;
 import ui.swing.delegate.DelegateSimple;
 
 public class CompanyEdit extends JInternalFrame implements ActionListener {
